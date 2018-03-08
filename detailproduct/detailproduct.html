@@ -49,10 +49,12 @@ table.dataTable thead .sorting{background:none !important;}
     */
     $(document).ready(function() {
 
+      var filterType=NOFILTER;
+      var queryText;
 
-      var dataBaseRuleFuncQuery= function(filterType){
-          console.log('Your filter is ' +  filterType);
-          alert('Your filter is ' +  filterType);
+      var dataBaseRuleFuncQuery= function(){
+          console.log('Your filter is ' +  filterType + ' and search Query ' + queryText);
+         
 
            /* Your Database Rule here */
       };
@@ -60,32 +62,38 @@ table.dataTable thead .sorting{background:none !important;}
     /* We will track the event using ID or Class here we use an ID 
     When a user click a DOM element with an ID #noFilter an event accur.. Then you do your logic to filter the table 
      */
-     var filterType=NOFILTER;
+    
 
      $("#NoFilter").click(function(event) {
         filterType=NOFILTER;
         // Call This function on every event
-        dataBaseRuleFuncQuery(filterType);
+        
     });
 
     $("#Contains").click(function(event) {
         filterType=CONTAINS;
         // Call This function on every event
-        dataBaseRuleFuncQuery(filterType);
+       
     });
     $("#NotContains").click(function(event) {
         filterType=NOTCONTAINS;
           // Call This function on every event
-        dataBaseRuleFuncQuery(filterType);
+       
     });
 
     $("#StartsWith").click(function(event) {
 
         filterType=STARTWITH;
         // Call This function on every event
-        dataBaseRuleFuncQuery(filterType);
+        
      });
 
+    
+    $('#InternalProductIDSearch').on('input',function(e){
+      queryText =$(this).val();
+      //Do your task Here 
+      dataBaseRuleFuncQuery();
+    });
     
 
    
@@ -600,7 +608,7 @@ table.dataTable thead .sorting{background:none !important;}
                                                
                                             </label></th>
                                                     <th><div class="input-group">
-      <input type="text" class="form-control" placeholder="Search for..." style="font-size:12px; font-weight:normal; padding:0px 10px; height:30px; ">
+      <input id="InternalProductIDSearch" type="text" class="form-control" placeholder="Search for..." style="font-size:12px; font-weight:normal; padding:0px 10px; height:30px; ">
       <span class="input-group-btn">
         <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" type="button" style="height:30px; padding:8px;">
 		<i class="fa fa-filter" aria-hidden="true"></i>
@@ -779,7 +787,7 @@ table.dataTable thead .sorting{background:none !important;}
 													</th>
 													<th>
 													<div class="input-group">
-      <input type="text" class="form-control" placeholder="Search for..." style="font-size:12px; font-weight:normal; padding:0px 10px; height:30px; ">
+      <input id="InternalProductIDSearch" type="text" class="form-control" placeholder="Search for..." style="font-size:12px; font-weight:normal; padding:0px 10px; height:30px; ">
       <span class="input-group-btn">
         <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" type="button" style="height:30px; padding:8px;">
 		<i class="fa fa-filter" aria-hidden="true"></i>
